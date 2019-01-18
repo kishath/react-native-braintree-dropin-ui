@@ -49,7 +49,6 @@ public class RNBraintreeDropInModule extends ReactContextBaseJavaModule {
     }
 
     DropInRequest dropInRequest = new DropInRequest().clientToken(options.getString("clientToken"));
-
     dropInRequest.collectDeviceData(true);
 
     if(options.getBoolean("googlePay")){
@@ -61,6 +60,10 @@ public class RNBraintreeDropInModule extends ReactContextBaseJavaModule {
           .build());
 
       dropInRequest.googlePaymentRequest(googlePaymentRequest);
+    }
+
+    if (!options.hasKey("payPal")) {
+      dropInRequest.disablePayPal();
     }
 
 
